@@ -3,6 +3,9 @@
 ### Deployed ON Hugging Spaces
  
   -  API LINK : https://rsrlearner-emailclassifiermaskeddata.hf.space/classify_email
+## Screenshots
+
+![App Screenshot](EmailClassificationouputimage.png)
 ## API Usage
 
 #### PII Masking Entities
