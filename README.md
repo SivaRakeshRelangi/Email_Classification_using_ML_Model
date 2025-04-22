@@ -1,6 +1,7 @@
 # Email_Classification_using_ML_Model
 
 ### Deployed ON Hugging Spaces
+ 
   -  API LINK : https://rsrlearner-emailclassifiermaskeddata.hf.space/classify_email
 ## API Usage
 
@@ -50,11 +51,7 @@ The system detects and masks the following PII fields:
 ```
 
 
-
-
-
-
-
+ -  Deployment Link : https://rsrlearner-emailclassifiermaskeddata.hf.space/
 ## Files
 
 - app.py     --> **Entry point of the application**
