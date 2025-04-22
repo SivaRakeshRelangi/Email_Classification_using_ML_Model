@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+scikit-learn
+joblib
+spacy
+pydantic
+pandas
+numpy==1.24.4
+pytest
