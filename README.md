@@ -4,6 +4,19 @@
   -  API LINK : https://rsrlearner-emailclassifiermaskeddata.hf.space/classify_email
 ## API Usage
 
+#### PII Masking Entities
+The system detects and masks the following PII fields:
+
+| Field Type | Masked As     |
+| :-------- | :------- |
+| `Full Name` | `[full_name]` | 
+| `Email Address` | `[email]` | 
+| `Phone Number` | `[phone_number]` | 
+| `Date of Birth` | `[dob]` | 
+| `Aadhar Card Number` | `[aadhar_num]` | 
+| `Credit/Debit Number` | `[credit_debit_no]` | 
+| `CVV Number` | `[cvv_no]` | 
+| `Expiry Date` | `[expiry_no]` | 
 **Request Body:**
 
 ```bash
