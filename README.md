@@ -2,7 +2,37 @@
 
 ### Deployed ON Hugging Spaces
   -  API LINK : https://rsrlearner-emailclassifiermaskeddata.hf.space/classify_email
+## API Usage
 
+**Request Body:**
+
+```bash
+  {
+  "email_body": "Hi, my name is John Doe, phone 9876543210. I'm having trouble logging in."
+  }
+
+```
+
+**Response Format:**
+```bash
+  {
+  "input_email_body": "Hi, my name is John Doe, phone 9876543210. I'm having trouble logging in.",
+  "list_of_masked_entities": [
+    {
+      "position": [17, 25],
+      "classification": "full_name",
+      "entity": "John Doe"
+    },
+    {
+      "position": [33, 43],
+      "classification": "phone_number",
+      "entity": "9876543210"
+    }
+  ],
+  "masked_email": "Hi, my name is [full_name], phone [phone_number]. I'm having trouble logging in.",
+  "category_of_the_email": "Technical Support"
+}
+```
 
 
 
