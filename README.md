@@ -49,7 +49,7 @@ The system detects and masks the following PII fields:
     }
   ],
   "masked_email": "Hi, my name is [full_name], phone [phone_number]. I'm having trouble logging in.",
-  "category_of_the_email": "Technical Support"
+  "category_of_the_email": "Incident"
 }
 ```
 
