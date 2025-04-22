@@ -64,4 +64,4 @@ The system detects and masks the following PII fields:
 - requirements.txt       --> **All dependencies listed here**
 - README.md          --> **You're reading it!**         
 - data/     --> **Sample data for testing and training**
-- report.pdf      --> **Short report with explanation**
+- Email_Classification_API_Project_Report.pdf      --> **Short report with explanation**
