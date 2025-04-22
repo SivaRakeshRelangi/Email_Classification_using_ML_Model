@@ -17,6 +17,8 @@ The system detects and masks the following PII fields:
 | `Credit/Debit Number` | `[credit_debit_no]` | 
 | `CVV Number` | `[cvv_no]` | 
 | `Expiry Date` | `[expiry_no]` | 
+
+
 **Request Body:**
 
 ```bash
