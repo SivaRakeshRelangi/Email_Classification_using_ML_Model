@@ -3,7 +3,7 @@
 ### Deployed ON Hugging Spaces
  
   -  API LINK : https://rsrlearner-emailclassifiermaskeddata.hf.space/classify_email
-## Screenshots
+## API Using Postman - Screenshots
 
 ![App Screenshot](EmailClassificationouputimage.png)
 ## API Usage
