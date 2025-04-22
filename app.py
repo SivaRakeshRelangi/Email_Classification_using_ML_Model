@@ -1,6 +1,14 @@
-# app.py
-import uvicorn
-from api import app
+from fastapi import FastAPI
+from api import router  # Import the API routes from api.py
+import inspect
+# Initialize FastAPI app instance
+app = FastAPI(
+    title="Email Classifier API",
+)
+# Home route: Return a welcome message
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the Email Classifier API! Use /classify_email for email classification."}
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=7860)
+# Include API routes from api.py
+app.include_router(router)
