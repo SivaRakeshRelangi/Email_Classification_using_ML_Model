@@ -18,31 +18,48 @@ PII_PATTERNS = {
 def mask_pii(text):
     entities = []
     masked_text = text
+    offset = 0  # Keeps track of how much the positions have shifted
 
-    # Regex-based masking
-    for key, pattern in PII_PATTERNS.items():
-        for match in re.finditer(pattern, masked_text):
-            start, end = match.start(), match.end()
-            entity_value = match.group()
-            masked_entity = f"[{key}]"
-            entities.append({
-                "position": [start, start + len(masked_entity)],
-                "classification": key,
-                "entity": entity_value
-            })
-            masked_text = masked_text[:start] + masked_entity + masked_text[end:]
-
-    # Named Entity Recognition for names
-    doc = nlp(masked_text)
+    # Step 1: NER for names (before modifying the text)
+    doc = nlp(text)
     for ent in doc.ents:
         if ent.label_ == "PERSON":
             start, end = ent.start_char, ent.end_char
-            original_text = masked_text[start:end]
-            masked_text = masked_text[:start] + "[full_name]" + masked_text[end:]
+            entity_value = text[start:end]
+            placeholder = "[full_name]"
+            masked_text = masked_text[:start + offset] + placeholder + masked_text[end + offset:]
             entities.append({
-                "position": [start, start + len("[full_name]")],
+                "position": [start + offset, start + offset + len(placeholder)],
                 "classification": "full_name",
-                "entity": original_text
+                "entity": entity_value
             })
+            offset += len(placeholder) - (end - start)
+
+    # Step 2: Regex-based PII (on already masked text)
+    for key, pattern in PII_PATTERNS.items():
+        # Fresh offset tracking for each pattern run
+        new_text = masked_text
+        offset = 0
+        local_entities = []
+
+        for match in re.finditer(pattern, masked_text):
+            start, end = match.start(), match.end()
+            entity_value = match.group()
+            placeholder = f"[{key}]"
+
+            # Insert mask and update positions
+            new_text = new_text[:start + offset] + placeholder + new_text[end + offset:]
+            local_entities.append({
+                "position": [start + offset, start + offset + len(placeholder)],
+                "classification": key,
+                "entity": entity_value
+            })
+            offset += len(placeholder) - (end - start)
+
+        # Apply all changes after each pattern to avoid overlap
+        masked_text = new_text
+        entities.extend(local_entities)
 
     return masked_text, entities
+
+
